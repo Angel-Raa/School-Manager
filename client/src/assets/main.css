@@ -1,35 +1,56 @@
-@import './base.css';
-
-#app {
-  max-width: 1280px;
-  margin: 0 auto;
-  padding: 2rem;
-  font-weight: normal;
+*,
+::after,
+::before {
+  box-sizing: inherit;
+  font-size: 16px;
+  margin: 0;
 }
 
-a,
-.green {
-  text-decoration: none;
-  color: hsla(160, 100%, 37%, 1);
-  transition: 0.4s;
-  padding: 3px;
+:root {
+  /* @link https://utopia.fyi/type/calculator?c=320,18,1.2,1240,20,1.25,5,2,&s=0.75|0.5|0.25,1.5|2|3|4|6,s-l&g=s,l,xl,12 */
+  --step--2: clamp(0.7813rem, 0.7747rem + 0.0326vw, 0.8rem);
+  --step--1: clamp(0.9375rem, 0.9158rem + 0.1087vw, 1rem);
+  --step-0: clamp(1.125rem, 1.0815rem + 0.2174vw, 1.25rem);
+  --step-1: clamp(1.35rem, 1.2761rem + 0.3696vw, 1.5625rem);
+  --step-2: clamp(1.62rem, 1.5041rem + 0.5793vw, 1.9531rem);
+  --step-3: clamp(1.9438rem, 1.7707rem + 0.8652vw, 2.4413rem);
+  --step-4: clamp(2.3325rem, 2.0823rem + 1.2511vw, 3.0519rem);
+  --step-5: clamp(2.7994rem, 2.4461rem + 1.7663vw, 3.815rem);
+
+  --waikawa-gray-50: #f3f7fa;
+  --waikawa-gray-100: #e9f0f6;
+  --waikawa-gray-200: #d7e3ee;
+  --waikawa-gray-300: #bfcfe2;
+  --waikawa-gray-400: #a4b8d5;
+  --waikawa-gray-500: #8d9fc7;
+  --waikawa-gray-600: #697ab0;
+  --waikawa-gray-700: #63719f;
+  --waikawa-gray-800: #525d81;
+  --waikawa-gray-900: #464e69;
+  --waikawa-gray-950: #292e3d;
 }
 
-@media (hover: hover) {
-  a:hover {
-    background-color: hsla(160, 100%, 37%, 0.2);
-  }
+.text-size-1 {
+  font-size: var(--step--2);
 }
-
-@media (min-width: 1024px) {
-  body {
-    display: flex;
-    place-items: center;
-  }
-
-  #app {
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-    padding: 0 2rem;
-  }
+.text-size-2 {
+  font-size: var(--step--1);
+}
+.text-size-3 {
+  font-size: var(--step-0);
+}
+.text-size-4 {
+  font-size: var(--step-1);
+}
+.text-size-5 {
+  font-size: var(--step-2);
+}
+.text-size-6 {
+  font-size: var(--step-3);
+}
+.text-size-7 {
+  font-size: var(--step-4);
+}
+.text-size-8 {
+  font-size: var(--step-5);
 }
