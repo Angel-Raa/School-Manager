@@ -1,9 +1,16 @@
 services:
-  postgres:
-    image: 'postgres:latest'
+  data:
+    image: 'postgres:15-alpine'
+    container_name: 'data'
+    restart: 'always'
+    volumes:
+      - 'data:/var/lib/'
     environment:
-      - 'POSTGRES_DB=mydatabase'
-      - 'POSTGRES_PASSWORD=secret'
-      - 'POSTGRES_USER=myuser'
+      - 'POSTGRES_DB=escuela'
+      - 'POSTGRES_PASSWORD=escuela'
+      - 'POSTGRES_USER=12345678'
     ports:
       - '5432'
+
+volumes:
+  'data':
