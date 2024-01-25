@@ -1,16 +1,15 @@
 <script setup lang="ts">
-import  NavBar from './views/NavBar.vue';
-
+import ProfileForm from './components/ProfileForm.vue';
+import NavBar from './views/NavBar.vue'
 </script>
 
 <template>
-  <NavBar/>
-  <div class="ui container" >
+  <NavBar />
+  <div class="ui container">
     <RouterView />
-    <h1>Hola Mundo!</h1>
+  
+    <ProfileForm/>
   </div>
 </template>
 
-<style scoped>
-
-</style>
+<style scoped></style>

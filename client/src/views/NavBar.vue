@@ -4,17 +4,21 @@
     <header class="nav-header">
       <div class="nav-title text-size-6 waikawa-200"><i class="trademark icon"></i></div>
     </header>
-    <div class="nav-links ">
-      <a class="text-size-3 waikawa-200 " href="#">Perfil</a>
+    <div class="nav-links">
+      <a class="text-size-3 waikawa-200" href="#">Perfil</a>
       <a class="text-size-3 waikawa-200" href="//github.io/jo_geek" target="_blank">Github</a>
-      <a class="text-size-3 waikawa-200" href="http://stackoverflow.com/users/4084003/" target="_blank">Stackoverflow</a>
-      
+      <a
+        class="text-size-3 waikawa-200"
+        href="http://stackoverflow.com/users/4084003/"
+        target="_blank"
+        >Stackoverflow</a
+      >
     </div>
   </nav>
 </template>
 
 <style scoped>
-*{
+* {
   box-sizing: border-box;
 }
 .nav {
@@ -33,17 +37,14 @@
 .nav-title {
   margin: 9px;
   text-align: right;
-
-  
 }
 
-.nav > .nav-btn{
+.nav > .nav-btn {
   display: none;
 }
-.nav > .nav-links{
+.nav > .nav-links {
   display: inline;
   justify-content: end;
-  
 }
 
 .nav > .nav-links > a {
@@ -51,8 +52,6 @@
   padding: 13px;
   margin: 0 5px;
   text-decoration: none;
-  
-
 }
 .nav > .nav-links > a:hover {
   background-color: rgba(0, 0, 0, 0.3);
@@ -61,5 +60,4 @@
 .nav > #nav-check {
   display: none;
 }
-
 </style>
