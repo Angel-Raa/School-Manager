@@ -6,7 +6,8 @@ El proyecto consiste en desarrollar un sistema de gestión escolar completo para
 
 ## Hoja de Ruta
 
-- [x] Implementar la gestión de estudiantes
+- [ ] Implementar la gestión de estudiantes
+- [ ] Implementar la gestión de maestro
 - [ ] Agregar funcionalidad de registro de notas
 - [ ] Integrar sistema de autenticación
 - [ ] Desarrollar la interfaz del calendario escolar
