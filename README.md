@@ -2,9 +2,6 @@
 
 El proyecto consiste en desarrollar un sistema de gestión escolar completo para escuelas primarias y secundarias. El sistema tiene como objetivo principal facilitar la administración de información académica, asistencia, calificaciones, eventos y la gestión de estudiantes y maestros.
 
-## Estado del Proyecto
-
-Actualmente, este proyecto se encuentra en desarrollo activo. Estamos trabajando arduamente para implementar todas las características planificadas. Si encuentras problemas o tienes sugerencias, no dudes en abrir un problema o contribuir con una solicitud de extracción.
 
 
 ## Hoja de Ruta
