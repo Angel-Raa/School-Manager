@@ -23,4 +23,3 @@ El proyecto consiste en desarrollar un sistema de gestión escolar completo para
 4. Realiza tus cambios y verifica que todo funcione correctamente.
 5. Envía una solicitud de extracción (pull request) con una descripción detallada de tus cambios.
 
-¡Esperamos con ansias tus contribuciones!
