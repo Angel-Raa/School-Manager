@@ -1,7 +1,7 @@
 *,
 ::after,
 ::before {
-  box-sizing: inherit;
+  box-sizing: border-box;
   font-size: 16px;
   margin: 0;
 }
@@ -53,4 +53,16 @@
 }
 .text-size-8 {
   font-size: var(--step-5);
+}
+
+.waikawa-bg-800 {
+  background-color: var(--waikawa-gray-800);
+}
+
+.waikawa-200{
+  color: var(--waikawa-gray-200);
+}
+
+.waikawa-500{
+  color: var(--waikawa-gray-500);
 }
