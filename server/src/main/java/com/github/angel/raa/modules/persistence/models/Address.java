@@ -14,7 +14,7 @@ import java.io.Serializable;
 @Table(name = "address")
 public class Address implements Serializable {
     @Serial
-    private static final long serialVersionUID = 102918371L;
+    private static final long serialVersionUID = 1L;
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "id")
@@ -24,4 +24,8 @@ public class Address implements Serializable {
     @Column(name = "street")
     private String street;
 
+    public Address(String city, String street) {
+        this.city = city;
+        this.street = street;
+    }
 }

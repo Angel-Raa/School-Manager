@@ -24,9 +24,10 @@ public class Student implements Serializable {
     private String surname;
     @Column(unique = true)
     private String email;
+    @Column(unique = true)
     private String phone;
     private String gender;
-    @OneToOne(cascade = CascadeType.ALL, fetch = FetchType.LAZY, optional = false, orphanRemoval = true)
+    @OneToOne(cascade = CascadeType.ALL, fetch = FetchType.LAZY, orphanRemoval = true)
     @JoinColumn(name = "address_id" , unique = true)
     private Address address;
 }
