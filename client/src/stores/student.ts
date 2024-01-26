@@ -30,8 +30,20 @@ export const useStudent = defineStore('student', {
         })
     },
     async addStudentStore(student: Student): Promise<Response> {
-      return addStudent(student)
+      return api
+        .post('http://localhost:9090/api/v1/student/add-student', { body:student })
+        .then((res) => (this.response = res))
+        .catch((err) => {
+          this.error = true
+          this.loading = false
+          this.response.message = err.message
+          this.response.status = err.status
+          this.students = []
+          return this.response as Response
+        })
+        
     }
+
   }
 })
 

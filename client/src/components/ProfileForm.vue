@@ -1,4 +1,5 @@
 <script setup lang="ts">
+import useStudent from '@/stores/student';
 import type { Student } from '@/types'
 import { ref, type Ref } from 'vue'
 const students: Ref<Student> = ref({
@@ -12,11 +13,25 @@ const students: Ref<Student> = ref({
     street: ''
   }
 })
+
+const store = useStudent();
+const createStudent = async () => {
+  const response = await store.addStudentStore(students.value);
+  console.log(students.value)
+  console.log(students.value.address)
+  students.value.address.city = ""
+  students.value.email = ""
+  students.value.gender = ""
+  students.value.surname = ""
+  students.value.name= ""
+  students.value.address.street = ""
+  students.value.phone = ""
+}
 </script>
 
 <template>
   <h3 class="text-size-4">Información Personal</h3>
-  <form class="ui form">
+  <form class="ui form" @submit.prevent="createStudent()">
     <div class="field">
       <label for="name" id="name">Nombre</label>
       <div class="two fields">
@@ -87,6 +102,7 @@ const students: Ref<Student> = ref({
           </div>
         </div>
       </div>
+      <button type="submit" class="ui primary button">Save</button>
     </div>
   </form>
 </template>
