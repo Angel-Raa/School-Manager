@@ -5,7 +5,7 @@
       <div class="nav-title text-size-6 waikawa-200"><i class="trademark icon"></i></div>
     </header>
     <div class="nav-links">
-      <a class="text-size-3 waikawa-200" href="#">Perfil</a>
+      <RouterLink  class="text-size-3 waikawa-200" :to="{name:'profile'}" >Perfil</RouterLink>
       <a class="text-size-3 waikawa-200" href="//github.io/jo_geek" target="_blank">Github</a>
       <a
         class="text-size-3 waikawa-200"
