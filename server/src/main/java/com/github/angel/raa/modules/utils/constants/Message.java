@@ -1,7 +1,7 @@
 package com.github.angel.raa.modules.utils.constants;
 
 public record Message() {
-    public static final String SUCCESS = "Success";
+    public static  String SUCCESS = "Success";
     public static final String ERROR = "Error";
     public static final String WARNING = "Warning";
     public static final String INFO = "Info";
@@ -19,4 +19,12 @@ public record Message() {
     public static final Integer FORBIDDEN = 403;
     public static final Integer NOT_FOUND_HTTP = 404;
     public static final Integer INTERNAL_SERVER_ERROR = 500;
+    public static  final String NOT_FOUND_TEACHER = "Teacher not found";
+    public static final String NOT_FOUND_STUDENT = "Student not found";
+    public static final String NOT_FOUND_ADDRESS = "Address not found";
+    public static final String NOT_FOUND_COURSE = "Course not found";
+    public static final String UPDATE_SUCCESS = "Update success";
+    public static final String UPDATE_ERROR = "Update error";
+    public static final String DELETE_SUCCESS = "Delete success";
+    public static final String DELETE_ERROR = "Delete error";
 }

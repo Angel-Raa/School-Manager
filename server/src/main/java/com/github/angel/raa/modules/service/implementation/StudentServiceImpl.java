@@ -1,6 +1,7 @@
 package com.github.angel.raa.modules.service.implementation;
 
 import com.github.angel.raa.modules.configuration.exception.Error;
+import com.github.angel.raa.modules.configuration.exception.HandlerException;
 import com.github.angel.raa.modules.configuration.exception.NotFoundStundetException;
 import com.github.angel.raa.modules.persistence.models.Address;
 import com.github.angel.raa.modules.persistence.models.Student;
@@ -79,13 +80,13 @@ public class StudentServiceImpl implements StudentService {
                     .timestamp(LocalDateTime.now())
                     .build();
 
-        } catch (Error e) {
+        } catch (HandlerException e) {
             log.info("Error adding student : {} ");
             return Response.builder()
-                    .message("Failed to add student")
-                    .code(Message.BAD_REQUEST)
-                    .status(HttpStatus.BAD_REQUEST)
-                    .timestamp(LocalDateTime.now())
+                    .message(e.getMessage())
+                    .code(e.getCode())
+                    .status(e.getStatus())
+                    .timestamp(e.getTimestamp())
                     .build();
         }
     }
