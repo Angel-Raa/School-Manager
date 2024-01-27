@@ -4,5 +4,7 @@ import jakarta.validation.constraints.NotEmpty;
 
 public record CourseDTO(Long courseId,
                         @NotEmpty(message = "Campo curso no puede esta vacio")
-                        String name) {
+                        String name,
+                        String description
+) {
 }

@@ -22,4 +22,6 @@ public class Course implements Serializable {
     private Long id;
     @Column(name = "name", unique = true)
     private String name;
+    private String description;
+
 }
