@@ -7,10 +7,11 @@ services:
       - 'data:/var/lib/'
     environment:
       - 'POSTGRES_DB=escuela'
-      - 'POSTGRES_PASSWORD=escuela'
-      - 'POSTGRES_USER=12345678'
+      -  'POSTGRES_USER=escuela'
+      - 'POSTGRES_PASSWORD=12345678'
+
     ports:
-      - '5432'
+      - '6060:5432'
 
 volumes:
   'data':
