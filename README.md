@@ -17,7 +17,7 @@ El proyecto consiste en desarrollar un sistema de gestión escolar completo para
 
 ¡Agradecemos cualquier contribución! Si deseas contribuir al desarrollo de este proyecto, sigue los pasos a continuación:
 
-1. Clona el repositorio: `git clone https://github.com/Angel-Raa/Gestion-Escolar.git`
+1. Clona el repositorio: `git clone https://github.com/Angel-Raa/School-Manager.git`
 2. Configura tu entorno de desarrollo local.
 3. Crea una rama para tu contribución: `git switch -c nueva-caracteristica`
 4. Realiza tus cambios y verifica que todo funcione correctamente.
