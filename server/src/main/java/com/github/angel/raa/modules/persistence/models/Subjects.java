@@ -5,6 +5,7 @@ import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
+
 import java.io.Serial;
 import java.io.Serializable;
 
@@ -13,20 +14,17 @@ import java.io.Serializable;
 @NoArgsConstructor
 @Entity
 @Table(name = "subjects")
-public class Assignment implements Serializable {
+public class Subjects implements Serializable {
     @Serial
     private static final long serialVersionUID = 102918371L;
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "id")
     private Long id;
+    private String name;
+    private String description;
     @ManyToOne(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
-    @JoinColumn(name = "student_id")
-    private Student student;
-    @ManyToOne(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
-    @JoinColumn(name = "course_id")
-    private Course course;
-    @Column(name = "nota")
-    private String nota;
+    @JoinColumn(name = "teacher_id")
+    private Teacher teacher;
 
 }
