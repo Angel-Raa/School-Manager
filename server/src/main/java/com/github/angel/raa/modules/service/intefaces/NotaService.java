@@ -6,9 +6,9 @@ import com.github.angel.raa.modules.utils.api.Response;
 import java.util.List;
 
 public interface NotaService {
-    List<NotaDTO> getNotaByStudent(Long studentId);
-    Response save(Long studentId, Long courseId, int qua);
+    List<NotaDTO> getNotaByStudent();
+    Response save(NotaDTO dto);
     Response delete(Long id);
-    Response update(Long notaId, int qua);
+    Response update(Long notaId, int qualification);
 
 }

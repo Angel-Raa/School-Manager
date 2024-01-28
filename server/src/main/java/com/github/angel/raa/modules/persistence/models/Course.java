@@ -23,8 +23,7 @@ public class Course implements Serializable {
     @Column(name = "name", unique = true)
     private String name;
     private String description;
-    @ManyToOne(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
-    @JoinColumn(name = "teacher_id")
-    private Teacher teacher;
+
+
 
 }

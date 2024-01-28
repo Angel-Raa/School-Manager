@@ -1,6 +1,7 @@
 package com.github.angel.raa.modules.utils.constants;
 
 public record Message() {
+    public static final String DELETED = "";
     public static  String SUCCESS = "Success";
     public static final String ERROR = "Error";
     public static final String WARNING = "Warning";
