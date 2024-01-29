@@ -8,5 +8,5 @@ public record SubjectsDTO(Long subjectsId,
                           String name,
                           @Size(min = 10, max = 200, message = "La descripcion debe tener entre 10 y 200 caracteres")
                           String description,
-                          Long teacher) {
+                          Long teacherId) {
 }
