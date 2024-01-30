@@ -7,11 +7,9 @@ import com.github.angel.raa.modules.configuration.exception.NotFoundSubjectsExce
 import com.github.angel.raa.modules.persistence.models.Course;
 import com.github.angel.raa.modules.persistence.models.Nota;
 import com.github.angel.raa.modules.persistence.models.Student;
-import com.github.angel.raa.modules.persistence.models.Subjects;
 import com.github.angel.raa.modules.persistence.repository.CourseRepository;
 import com.github.angel.raa.modules.persistence.repository.NotaRepository;
 import com.github.angel.raa.modules.persistence.repository.StudentRepository;
-import com.github.angel.raa.modules.persistence.repository.SubjectsRepository;
 import com.github.angel.raa.modules.service.intefaces.NotaService;
 import com.github.angel.raa.modules.utils.DTO.NotaDTO;
 import com.github.angel.raa.modules.utils.api.Response;

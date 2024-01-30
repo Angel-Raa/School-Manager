@@ -41,6 +41,11 @@ public class StudentController {
         return ResponseEntity.ok(service.addStudent(studentDTO));
     }
 
+    @PostMapping("/subscribe-course/{courseId}/student/{studentId}")
+    public ResponseEntity<Response> subscribeCourse(@Valid @PathVariable(value = "courseId") @Min(1) Long courseId, @PathVariable(value = "studentId") @Min(1)  @PositiveOrZero(message = "Id must be greater than 0")  Long studentId) {
+        return ResponseEntity.ok(service.subscribeCourse(courseId, studentId));
+    }
+
     @PutMapping("/update-student/{id}")
     public ResponseEntity<Response> updateStudent(@Valid @PathVariable(value = "id") @Min(1) Long id, @RequestBody StudentDTO studentDTO) {
         return ResponseEntity.ok(service.updateStudent(id, studentDTO));

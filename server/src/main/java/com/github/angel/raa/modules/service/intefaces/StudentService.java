@@ -17,6 +17,7 @@ public interface StudentService {
     Response updateStudent(Long id, StudentDTO studentDTO);
     Response deleteStudent(Long id);
     List<StudentCourseDTO> getStudentCourses();
+    Response subscribeCourse(Long courseId, Long studentId);
 
 
 }

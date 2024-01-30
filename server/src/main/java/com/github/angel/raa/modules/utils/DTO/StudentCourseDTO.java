@@ -1,4 +1,6 @@
 package com.github.angel.raa.modules.utils.DTO;
 
-public record StudentCourseDTO(String name, CourseDTO courseDTO) {
+import java.util.Set;
+
+public record StudentCourseDTO(String name, Set<CourseDTO> courses) {
 }

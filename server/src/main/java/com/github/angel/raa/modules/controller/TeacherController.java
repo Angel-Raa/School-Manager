@@ -30,6 +30,7 @@ public class TeacherController {
     public ResponseEntity<TeacherDTO> findById(@Valid @PathVariable(value = "id") @Min(1) Long id) {
         return ResponseEntity.ok(service.findById(id));
     }
+
     @PostMapping("/add-teacher")
     public ResponseEntity<Response> addTeacher(@Valid @RequestBody TeacherDTO teacherDTO) {
         return ResponseEntity.status(HttpStatus.CREATED).body(service.save(teacherDTO));

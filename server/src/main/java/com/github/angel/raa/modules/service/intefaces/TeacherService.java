@@ -11,4 +11,5 @@ public interface TeacherService {
     Response save(TeacherDTO teacherDTO);
     Response delete(Long id);
     Response update(Long id, TeacherDTO teacherDTO);
+    //<-- returns a set of TeacherCourseDTO, not a list<TeacherCourseDTO>
 }

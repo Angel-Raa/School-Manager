@@ -32,4 +32,5 @@ public class Teacher implements Serializable {
     @OneToOne(cascade = CascadeType.ALL, fetch = FetchType.LAZY, orphanRemoval = true)
     @JoinColumn(name = "address_id" , unique = true)
     private Address address;
+
 }

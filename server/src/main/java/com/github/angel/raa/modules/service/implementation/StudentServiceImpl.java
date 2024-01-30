@@ -1,10 +1,12 @@
 package com.github.angel.raa.modules.service.implementation;
 
-import com.github.angel.raa.modules.configuration.exception.Error;
 import com.github.angel.raa.modules.configuration.exception.HandlerException;
+import com.github.angel.raa.modules.configuration.exception.NotFoundCourseException;
 import com.github.angel.raa.modules.configuration.exception.NotFoundStundetException;
 import com.github.angel.raa.modules.persistence.models.Address;
+import com.github.angel.raa.modules.persistence.models.Course;
 import com.github.angel.raa.modules.persistence.models.Student;
+import com.github.angel.raa.modules.persistence.repository.CourseRepository;
 import com.github.angel.raa.modules.persistence.repository.StudentRepository;
 import com.github.angel.raa.modules.service.intefaces.StudentService;
 import com.github.angel.raa.modules.utils.DTO.AddressDTO;
@@ -23,6 +25,8 @@ import org.springframework.transaction.annotation.Transactional;
 import java.time.LocalDateTime;
 import java.util.List;
 import java.util.Optional;
+import java.util.Set;
+import java.util.stream.Collectors;
 
 
 @Log
@@ -30,6 +34,7 @@ import java.util.Optional;
 @Service
 public class StudentServiceImpl implements StudentService {
     private final StudentRepository studentRepository;
+    private final CourseRepository courseRepository;
 
     @NotNull
     private static NotFoundStundetException getNotFoundStundetException() {
@@ -101,7 +106,7 @@ public class StudentServiceImpl implements StudentService {
                     .status(HttpStatus.OK)
                     .timestamp(LocalDateTime.now())
                     .build();
-        }catch (Error e) {
+        } catch (HandlerException e) {
             throw new HandlerException(e.getMessage(), e.getStatus(), e.getCode(), e.getTimestamp());
         }
 
@@ -110,11 +115,40 @@ public class StudentServiceImpl implements StudentService {
     @Transactional(readOnly = true)
     @Override
     public List<StudentCourseDTO> getStudentCourses() {
+        log.info("Get student courses");
+
         return studentRepository.findAll()
                 .stream()
-                .map(it -> new StudentCourseDTO(it.getName(), new CourseDTO(it.getId(), it.getCourses().getName(), it.getCourses().getDescription())))
+                .map(it -> new StudentCourseDTO(it.getName(), mapCourse(it.getCourses())))
                 .toList();
     }
+
+    @Transactional
+    @Override
+    public Response subscribeCourse(Long courseId, Long studentId) {
+        try {
+            Course course = courseRepository.findById(courseId).orElseThrow(() -> new NotFoundCourseException(Message.NOT_FOUND, HttpStatus.NOT_FOUND, Message.NOT_FOUND_HTTP));
+            Student student = studentRepository.findById(studentId)
+                    .orElseThrow(StudentServiceImpl::getNotFoundStundetException);
+
+            if (student.getCourses().contains(course)) {
+                return new Response("Student already subscribed to this course", HttpStatus.BAD_REQUEST, Message.BAD_REQUEST, LocalDateTime.now());
+            }
+
+            student.getCourses().add(course);
+            studentRepository.save(student);
+            return Response.builder()
+                    .message("Student subscribed to course successfully")
+                    .code(Message.OK)
+                    .status(HttpStatus.OK)
+                    .timestamp(LocalDateTime.now())
+                    .build();
+        } catch (HandlerException e) {
+            throw new HandlerException(e.getMessage(), e.getStatus(), e.getCode(), e.getTimestamp());
+
+        }
+    }
+
 
     private Student getStudentOrThrow( Long id) {
         return studentRepository.findById(id)
@@ -175,5 +209,11 @@ public class StudentServiceImpl implements StudentService {
         student.setPhone(studentDTO.phone());
         student.setGender(studentDTO.gender());
         student.setAddress(address);
+    }
+
+    private Set<CourseDTO> mapCourse(@NotNull Set<Course> courses) {
+        return courses.stream()
+                .map(it -> new CourseDTO(it.getId(), it.getName(), it.getDescription()))
+                .collect(Collectors.toSet());
     }
 }
