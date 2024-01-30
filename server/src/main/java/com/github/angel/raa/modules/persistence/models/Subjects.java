@@ -25,7 +25,6 @@ public class Subjects implements Serializable {
     private String name;
     @Column(length = 100)
     private String description;
-
     @ManyToOne(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
     @JoinColumn(name = "teacher_id")
     private Teacher teacher;

@@ -8,6 +8,8 @@ import com.github.angel.raa.modules.persistence.models.Student;
 import com.github.angel.raa.modules.persistence.repository.StudentRepository;
 import com.github.angel.raa.modules.service.intefaces.StudentService;
 import com.github.angel.raa.modules.utils.DTO.AddressDTO;
+import com.github.angel.raa.modules.utils.DTO.CourseDTO;
+import com.github.angel.raa.modules.utils.DTO.StudentCourseDTO;
 import com.github.angel.raa.modules.utils.DTO.StudentDTO;
 import com.github.angel.raa.modules.utils.api.Response;
 import com.github.angel.raa.modules.utils.constants.Message;
@@ -82,12 +84,7 @@ public class StudentServiceImpl implements StudentService {
 
         } catch (HandlerException e) {
             log.info("Error adding student : {} ");
-            return Response.builder()
-                    .message(e.getMessage())
-                    .code(e.getCode())
-                    .status(e.getStatus())
-                    .timestamp(e.getTimestamp())
-                    .build();
+            throw new HandlerException(e.getMessage(), e.getStatus(), e.getCode(), e.getTimestamp());
         }
     }
 
@@ -105,14 +102,18 @@ public class StudentServiceImpl implements StudentService {
                     .timestamp(LocalDateTime.now())
                     .build();
         }catch (Error e) {
-            return Response.builder()
-                    .message("Cannot delete students")
-                    .code(Message.BAD_REQUEST)
-                    .status(HttpStatus.BAD_REQUEST)
-                    .timestamp(LocalDateTime.now())
-                    .build();
+            throw new HandlerException(e.getMessage(), e.getStatus(), e.getCode(), e.getTimestamp());
         }
 
+    }
+
+    @Transactional(readOnly = true)
+    @Override
+    public List<StudentCourseDTO> getStudentCourses() {
+        return studentRepository.findAll()
+                .stream()
+                .map(it -> new StudentCourseDTO(it.getName(), new CourseDTO(it.getId(), it.getCourses().getName(), it.getCourses().getDescription())))
+                .toList();
     }
 
     private Student getStudentOrThrow( Long id) {

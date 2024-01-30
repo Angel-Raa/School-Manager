@@ -24,7 +24,7 @@ public class Nota implements Serializable {
     @JoinColumn(name = "student_id")
     private Student student;
     @ManyToOne(cascade = CascadeType.ALL, fetch = FetchType.LAZY)
-    @JoinColumn(name = "subject_id")
-    private Subjects subject;
-    private int qualification;
+    @JoinColumn(name = "course_id")
+    private Course course;
+    private Long qualification;
 }

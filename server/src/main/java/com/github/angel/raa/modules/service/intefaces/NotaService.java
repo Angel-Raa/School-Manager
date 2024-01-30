@@ -9,6 +9,6 @@ public interface NotaService {
     List<NotaDTO> getNotaByStudent();
     Response save(NotaDTO dto);
     Response delete(Long id);
-    Response update(Long notaId, int qualification);
+    Response update(Long notaId, Long qualification);
 
 }

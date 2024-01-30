@@ -1,10 +1,12 @@
 package com.github.angel.raa.modules.controller;
 
 import com.github.angel.raa.modules.service.intefaces.StudentService;
+import com.github.angel.raa.modules.utils.DTO.StudentCourseDTO;
 import com.github.angel.raa.modules.utils.DTO.StudentDTO;
 import com.github.angel.raa.modules.utils.api.Response;
 import jakarta.validation.Valid;
 import jakarta.validation.constraints.Min;
+import jakarta.validation.constraints.PositiveOrZero;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;
 import org.springframework.validation.annotation.Validated;
@@ -26,10 +28,14 @@ public class StudentController {
     }
 
     @GetMapping("/student-by/{id}")
-    public ResponseEntity<StudentDTO> getStudentById(@Valid @PathVariable(value = "id") @Min(1) Long id) {
+    public ResponseEntity<StudentDTO> getStudentById(@Valid @PathVariable(value = "id") @Min(1)  @PositiveOrZero(message = "Id must be greater than 0")  Long id) {
         return ResponseEntity.ok(service.getStudentById(id));
     }
 
+    @GetMapping("/all-student-course")
+    public ResponseEntity<List<StudentCourseDTO>> getAllStudentCourse() {
+        return ResponseEntity.ok(service.getStudentCourses());
+    }
     @PostMapping("/add-student")
     public ResponseEntity<Response> addStudent(@Valid @RequestBody StudentDTO studentDTO) {
         return ResponseEntity.ok(service.addStudent(studentDTO));

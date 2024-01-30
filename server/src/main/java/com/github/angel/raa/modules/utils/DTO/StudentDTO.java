@@ -1,6 +1,5 @@
 package com.github.angel.raa.modules.utils.DTO;
 
-import com.github.angel.raa.modules.utils.constants.Message;
 import jakarta.validation.constraints.*;
 
 public record StudentDTO(Long id,
@@ -10,7 +9,7 @@ public record StudentDTO(Long id,
                          @NotEmpty(message = "Campo apellido no puede esta vacio")
                          @Size(min = 4,  message = "apellido no valido")
                          String surname,
-                         @Email(message = "email no valido", regexp = Message.VALIDATE_EMAIL_REGEX)
+                         @Email(message = "email no valido")
                          @NotEmpty(message = "Campo email no puede esta vacio")
                          String email,
 

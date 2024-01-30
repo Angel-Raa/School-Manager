@@ -47,13 +47,8 @@ public class TeacherServiceImpl implements TeacherService {
                     .status(HttpStatus.CREATED)
                     .timestamp(LocalDateTime.now())
                     .build();
-        }catch (HandlerException err){
-            return Response.builder()
-                    .message(err.getMessage())
-                    .code(err.getCode())
-                    .status(HttpStatus.BAD_REQUEST)
-                    .timestamp(err.getTimestamp())
-                    .build();
+        }catch (HandlerException e){
+            throw   new HandlerException(e.getMessage(), e.getStatus(), e.getCode(), e.getTimestamp());
         }
 
     }

@@ -33,7 +33,7 @@ public class Student implements Serializable {
     private Address address;
     @ManyToOne(cascade = CascadeType.ALL, fetch = FetchType.LAZY)
     @JoinColumn(name = "course_id")
-    private Course course;
+    private Course courses;
 }
 
 
