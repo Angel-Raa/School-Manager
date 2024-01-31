@@ -7,7 +7,7 @@ import java.util.List;
 
 public interface NotaService {
     List<NotaDTO> getNotaByStudent();
-    Response save(NotaDTO dto);
+    Response save(NotaDTO dto,Long studentId, Long courseId);
     Response delete(Long id);
     Response update(Long notaId, Long qualification);
 

@@ -36,17 +36,17 @@ public class NotaServiceImpl implements NotaService {
     public List<NotaDTO> getNotaByStudent() {
         log.info("Getting all notas");
         return notaRepository.findAll().stream()
-                .map(it -> new NotaDTO(it.getId(), it.getStudent().getId(), it.getCourse().getId(), it.getQualification())
+                .map(it -> new NotaDTO(it.getId(), it.getStudent().getName(), it.getQualification())
                 ).toList();
     }
 
     @Transactional
     @Override
-    public Response save(NotaDTO dto) {
+    public Response save(NotaDTO dto,Long studentId, Long courseId) {
         try {
             Nota nota = new Nota();
-            Student student = studentRepository.findById(dto.studentId()).orElseThrow(() -> new NotFoundStundetException("Student not found", HttpStatus.NOT_FOUND, Message.NOT_FOUND_HTTP, LocalDateTime.now()));
-             Course course = courseRepository.findById(dto.courseId()).orElseThrow(() -> new NotFoundSubjectsException("Subject not found", HttpStatus.NOT_FOUND, Message.NOT_FOUND_HTTP));
+            Student student = studentRepository.findById(studentId).orElseThrow(() -> new NotFoundStundetException("Student not found", HttpStatus.NOT_FOUND, Message.NOT_FOUND_HTTP, LocalDateTime.now()));
+             Course course = courseRepository.findById(courseId).orElseThrow(() -> new NotFoundSubjectsException("Subject not found", HttpStatus.NOT_FOUND, Message.NOT_FOUND_HTTP));
             nota.setStudent(student);
             nota.setCourse(course);
             nota.setQualification(dto.qualification());
