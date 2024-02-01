@@ -19,3 +19,14 @@ export interface Response {
   code?: number
   timestamp?: string
 }
+
+export interface Teacher {
+  id?: number
+  name?: string
+  surname?: string
+  email?: string
+  phone?: string
+  gender?: string
+  specialization?: string
+  address: Address
+}

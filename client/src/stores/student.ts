@@ -1,6 +1,5 @@
 import type { Student, Response } from '@/types'
 import { defineStore } from 'pinia'
-import { addStudent } from '@/service'
 import { HelpHttp } from '../helper/HelpHttp'
 
 const api = HelpHttp()
@@ -31,7 +30,7 @@ export const useStudent = defineStore('student', {
     },
     async addStudentStore(student: Student): Promise<Response> {
       return api
-        .post('http://localhost:9090/api/v1/student/add-student', { body:student })
+        .post('http://localhost:9090/api/v1/student/add-student', { body: student })
         .then((res) => (this.response = res))
         .catch((err) => {
           this.error = true
@@ -41,9 +40,7 @@ export const useStudent = defineStore('student', {
           this.students = []
           return this.response as Response
         })
-        
     }
-
   }
 })
 

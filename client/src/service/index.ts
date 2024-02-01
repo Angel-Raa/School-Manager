@@ -10,7 +10,7 @@ export const getAllStudent = async (): Promise<Student[]> => {
 }
 
 export const addStudent = async (student: Student): Promise<Response> => {
-  const response = await fetch("http://localhost:9090/api/v1/student/all-student", {
+  const response = await fetch('http://localhost:9090/api/v1/student/all-student', {
     method: 'POST',
     headers: DEFAULT_HEADERS,
     body: JSON.stringify(student)

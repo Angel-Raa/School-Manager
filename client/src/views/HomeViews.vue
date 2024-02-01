@@ -1,3 +1,1 @@
-<template>
-    hola Mundo
-</template>
+<template>hola Mundo</template>

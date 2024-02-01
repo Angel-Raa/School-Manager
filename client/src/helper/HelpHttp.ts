@@ -1,13 +1,13 @@
-type HttpMethod = 'GET' | 'POST' | 'PUT' | 'DELETE' | 'PATCH';
+type HttpMethod = 'GET' | 'POST' | 'PUT' | 'DELETE' | 'PATCH'
 
 type RequestOptions = {
-  method?: HttpMethod ;
-  headers?: Record<string, string>;
-  body?: Record<string, any>;
-  signal?: AbortSignal;
-};
+  method?: HttpMethod
+  headers?: Record<string, string>
+  body?: Record<string, any>
+  signal?: AbortSignal
+}
 export const HelpHttp = () => {
-  const customFetch = async (endpoint: string | URL | Request, options:  any | RequestOptions) => {
+  const customFetch = async (endpoint: string | URL | Request, options: any | RequestOptions) => {
     const defaultHeaders = {
       'Content-Type': 'application/json',
       accept: 'application/json'
