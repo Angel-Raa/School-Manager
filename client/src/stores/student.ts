@@ -7,7 +7,7 @@ export const useStudent = defineStore('student', {
   state: () => ({
     error: false,
     loading: false,
-    response: '' as Response,
+    response: {} as Response,
     students: [] as Student[],
     student: {} as Student
   }),
@@ -17,7 +17,7 @@ export const useStudent = defineStore('student', {
       return api
         .get('http://localhost:9090/api/v1/student/add-student')
         .then((res) => res.json)
-        .then((res) => (this.response = res))
+        .then((res) => (this.student = res))
         .catch((err) => {
           console.log(err)
           this.error = true

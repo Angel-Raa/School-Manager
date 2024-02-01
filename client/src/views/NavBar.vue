@@ -6,7 +6,7 @@
     </header>
     <div class="nav-links">
       <RouterLink class="text-size-3 waikawa-200" :to="{ name: 'profile' }">Perfil</RouterLink>
-      <a class="text-size-3 waikawa-200" href="//github.io/jo_geek" target="_blank">Github</a>
+      <RouterLink class="text-size-3 waikawa-200" :to="{ name: 'course' }">Asignatura</RouterLink>
       <a
         class="text-size-3 waikawa-200"
         href="http://stackoverflow.com/users/4084003/"

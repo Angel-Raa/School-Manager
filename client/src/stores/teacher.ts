@@ -7,7 +7,7 @@ export const userTeacher = defineStore('teacher', {
   state: () => ({
     error: false,
     loading: true,
-    response: '' as Response,
+    response: {} as Response,
     teachers: [] as Teacher[],
     teacher: {} as Teacher
   }),

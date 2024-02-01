@@ -30,3 +30,9 @@ export interface Teacher {
   specialization?: string
   address: Address
 }
+
+export interface Course {
+  courseId: number
+  name?: string
+  description?: string
+}
