@@ -36,7 +36,7 @@ public class NotaServiceImpl implements NotaService {
     public List<NotaDTO> getNotaByStudent() {
         log.info("Getting all notas");
         return notaRepository.findAll().stream()
-                .map(it -> new NotaDTO(it.getId(), it.getStudent().getName(), it.getQualification())
+                .map(it -> new NotaDTO(it.getId(), it.getStudent().getName(), it.getCourse().getName(), it.getQualification())
                 ).toList();
     }
 
