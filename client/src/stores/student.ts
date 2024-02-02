@@ -12,21 +12,14 @@ export const useStudent = defineStore('student', {
     student: {} as Student
   }),
   actions: {
-    async getAllStudentsStore(): Promise<Student[]> {
-      this.loading = true
-      return api
-        .get('http://localhost:9090/api/v1/student/add-student')
-        .then((res) => res.json)
-        .then((res) => (this.student = res))
-        .catch((err) => {
-          console.log(err)
-          this.error = true
-          this.loading = false
-          this.response.message = err.message
-          this.response.status = err.status
-          this.students = []
-          return []
-        })
+    async getStudentById(id: number): Promise<Student> {
+      try {
+        const student = api.get(`http://localhost:9090/api/v1/student/student-by/${id}`)
+        return student
+      } catch (error) {
+        this.error = true
+        return {} as Student
+      }
     },
     async addStudentStore(student: Student): Promise<Response> {
       return api

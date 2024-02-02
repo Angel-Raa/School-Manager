@@ -15,8 +15,21 @@ const loading = async () => {
 </script>
 
 <template>
-  <section v-for="it in courses" :key="it.courseId">
-    <h2>{{ it.name }}</h2>
-    <p>{{ it.description }}</p>
-  </section>
+  <div v-if="courses.length === 0">
+    <p>No Curso Disponibles</p>
+  </div>
+  <div class="ui cards top">
+    <div class="card">
+      <div class="content" v-for="it in courses" :key="it.courseId">
+        <div class="header">{{ it.name }}</div>
+        <div class="description">{{ it.description }}</div>
+      </div>
+      <div class="ui bottom attached button"><i class="add icon"></i> Añadir Curso</div>
+    </div>
+  </div>
 </template>
+<style scoped>
+.top {
+  margin-top: 1.5rem;
+}
+</style>
