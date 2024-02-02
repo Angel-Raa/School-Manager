@@ -3,6 +3,7 @@ package com.github.angel.raa.modules.controller;
 import com.github.angel.raa.modules.service.intefaces.StudentService;
 import com.github.angel.raa.modules.utils.DTO.StudentCourseDTO;
 import com.github.angel.raa.modules.utils.DTO.StudentDTO;
+import com.github.angel.raa.modules.utils.DTO.SubscribedCourseDTO;
 import com.github.angel.raa.modules.utils.api.Response;
 import jakarta.validation.Valid;
 import jakarta.validation.constraints.Min;
@@ -13,6 +14,7 @@ import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
+import java.util.Set;
 
 @Validated
 @RequiredArgsConstructor
@@ -30,6 +32,10 @@ public class StudentController {
     @GetMapping("/student-by/{id}")
     public ResponseEntity<StudentDTO> getStudentById(@Valid @PathVariable(value = "id") @Min(1)  @PositiveOrZero(message = "Id must be greater than 0")  Long id) {
         return ResponseEntity.ok(service.getStudentById(id));
+    }
+    @GetMapping("/student-subscribed-courses/{id}")
+    public ResponseEntity<Set<SubscribedCourseDTO>>getStudentSubscribedCourses(@Valid @PathVariable(value = "id") @Min(1)  @PositiveOrZero(message = "Id must be greater than 0")  Long id){
+        return ResponseEntity.ok(service.getStudentSubscribedCourses(id));
     }
 
     @GetMapping("/all-student-course")

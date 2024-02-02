@@ -2,11 +2,13 @@ package com.github.angel.raa.modules.service.intefaces;
 
 import com.github.angel.raa.modules.utils.DTO.StudentCourseDTO;
 import com.github.angel.raa.modules.utils.DTO.StudentDTO;
+import com.github.angel.raa.modules.utils.DTO.SubscribedCourseDTO;
 import com.github.angel.raa.modules.utils.api.Response;
 import org.jetbrains.annotations.NotNull;
 
 import java.util.List;
 import java.util.Optional;
+import java.util.Set;
 
 public interface StudentService {
     List<StudentDTO> getAllStudents();
@@ -18,6 +20,7 @@ public interface StudentService {
     Response deleteStudent(Long id);
     List<StudentCourseDTO> getStudentCourses();
     Response subscribeCourse(Long courseId, Long studentId);
+    Set<SubscribedCourseDTO> getStudentSubscribedCourses(Long id);
 
 
 }

@@ -82,7 +82,7 @@ public class CourseServiceImpl implements CourseService {
     }
     @Transactional
     @Override
-    public Response update(Long courseId, CourseDTO courseDTO) {
+    public Response update(Long courseId, @NotNull CourseDTO courseDTO) {
         try {
             Course course = repository.findById(courseId).orElseThrow(() -> new NotFoundSubjectsException(Message.NOT_FOUND, HttpStatus.NOT_FOUND, Message.NOT_FOUND_HTTP));
             course.setName(courseDTO.name());
@@ -108,7 +108,7 @@ public class CourseServiceImpl implements CourseService {
     }
 
     @Contract("_ -> new")
-    private @NotNull InfoDTO mapCourse(Teacher teacher) {
+    private @NotNull InfoDTO mapCourse(@NotNull Teacher teacher) {
         return new InfoDTO(teacher.getName(), teacher.getSurname(), teacher.getSpecialization());
     }
 }

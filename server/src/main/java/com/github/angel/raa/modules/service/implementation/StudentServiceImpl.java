@@ -9,10 +9,7 @@ import com.github.angel.raa.modules.persistence.models.Student;
 import com.github.angel.raa.modules.persistence.repository.CourseRepository;
 import com.github.angel.raa.modules.persistence.repository.StudentRepository;
 import com.github.angel.raa.modules.service.intefaces.StudentService;
-import com.github.angel.raa.modules.utils.DTO.AddressDTO;
-import com.github.angel.raa.modules.utils.DTO.CourseDTO;
-import com.github.angel.raa.modules.utils.DTO.StudentCourseDTO;
-import com.github.angel.raa.modules.utils.DTO.StudentDTO;
+import com.github.angel.raa.modules.utils.DTO.*;
 import com.github.angel.raa.modules.utils.api.Response;
 import com.github.angel.raa.modules.utils.constants.Message;
 import lombok.RequiredArgsConstructor;
@@ -147,6 +144,15 @@ public class StudentServiceImpl implements StudentService {
             throw new HandlerException(e.getMessage(), e.getStatus(), e.getCode(), e.getTimestamp());
 
         }
+    }
+    @Transactional(readOnly = true)
+    @Override
+    public Set<SubscribedCourseDTO> getStudentSubscribedCourses(Long studentId) {
+        Student student = studentRepository.findById(studentId)
+                .orElseThrow(StudentServiceImpl::getNotFoundStundetException);
+        return student.getCourses().stream()
+                .map(it -> new SubscribedCourseDTO(it.getId(), it.getName(), it.getDescription(), it.getTeacher().getName()))
+                .collect(Collectors.toSet());
     }
 
 
