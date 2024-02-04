@@ -7,6 +7,7 @@ import lombok.NoArgsConstructor;
 
 import java.io.Serial;
 import java.io.Serializable;
+import java.util.List;
 import java.util.Set;
 
 @Data
@@ -31,6 +32,9 @@ public class Course implements Serializable {
     @JoinTable(name = "course_student", joinColumns = @JoinColumn(name = "course_id"), inverseJoinColumns = @JoinColumn(name = "student_id"))
     @OrderBy(value = "name ASC")
     private Set<Student> students;
+    @OneToMany(orphanRemoval = true, cascade = CascadeType.ALL, fetch = FetchType.LAZY, targetEntity = Nota.class)
+    @JoinColumn(name = "course_id")
+    private List<Nota> notas;
 
 
 

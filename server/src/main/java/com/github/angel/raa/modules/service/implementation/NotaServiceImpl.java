@@ -67,6 +67,7 @@ public class NotaServiceImpl implements NotaService {
     @Override
     public Response delete(Long id) {
         Nota nota = notaRepository.findById(id).orElseThrow(() -> new NotFoundNotaException("Nota not found", HttpStatus.NOT_FOUND, Message.NOT_FOUND_HTTP));
+
         notaRepository.delete(nota);
         return Response.builder()
                 .message("Nota deleted successfully")

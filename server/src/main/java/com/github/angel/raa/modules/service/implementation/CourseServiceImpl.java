@@ -4,8 +4,10 @@ import com.github.angel.raa.modules.configuration.exception.HandlerException;
 import com.github.angel.raa.modules.configuration.exception.NotFoundSubjectsException;
 import com.github.angel.raa.modules.configuration.exception.NotFoundTeacherException;
 import com.github.angel.raa.modules.persistence.models.Course;
+import com.github.angel.raa.modules.persistence.models.Nota;
 import com.github.angel.raa.modules.persistence.models.Teacher;
 import com.github.angel.raa.modules.persistence.repository.CourseRepository;
+import com.github.angel.raa.modules.persistence.repository.NotaRepository;
 import com.github.angel.raa.modules.persistence.repository.TeacherRepository;
 import com.github.angel.raa.modules.service.intefaces.CourseService;
 import com.github.angel.raa.modules.utils.DTO.CourseDTO;
@@ -28,6 +30,7 @@ import java.util.List;
 public class CourseServiceImpl implements CourseService {
     private final CourseRepository repository;
     private final TeacherRepository teacherRepository;
+    private final NotaRepository notaRepository;
 
     @Transactional(readOnly = true)
     @Override
@@ -69,6 +72,7 @@ public class CourseServiceImpl implements CourseService {
     public Response delete(Long courseId) {
         try {
             Course course = repository.findById(courseId).orElseThrow(() -> new NotFoundSubjectsException(Message.NOT_FOUND, HttpStatus.NOT_FOUND, Message.NOT_FOUND_HTTP));
+            List<Nota> notas = notaRepository.findByCourse(course);
             repository.delete(course);
             return Response.builder()
                     .status(HttpStatus.NO_CONTENT)
