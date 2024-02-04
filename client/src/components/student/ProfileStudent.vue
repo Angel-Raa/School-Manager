@@ -23,7 +23,6 @@ onMounted(() => {
   getStudent(1)
 })
 </script>
-
 <template>
   <div class="container">
     <div class="profile">
@@ -44,7 +43,11 @@ onMounted(() => {
       </div>
     </div>
     <div class="main-content" v-if="student.id">
-      <StudentCourse :id="student.id"  />
+      <StudentCourse :id="student.id" />
+    </div>
+    <div class="student-status">
+      <span>Estudiante</span>
+      <section class="status active">ACTIVO</section>
     </div>
   </div>
 </template>
@@ -76,5 +79,28 @@ onMounted(() => {
 
 .course {
   grid-row: 2; /* Place StudentCourse in the main content area */
+}
+
+.student-status {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-top: 1rem;
+  font-size: 16px;
+}
+
+.student-status section {
+  display: flex;
+  background-color: #007bff;
+  color: #fff;
+  padding: 5px 10px;
+  margin-left: 10px;
+  border-radius: 2rem;
+}
+
+.active section {
+  /* Estilos adicionales para el estado activo, si deseas */
+  font-weight: bold;
+  border: 2px solid #007bff; /* Resaltar más visualmente */
 }
 </style>

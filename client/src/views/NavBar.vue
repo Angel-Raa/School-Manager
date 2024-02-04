@@ -2,7 +2,9 @@
   <nav class="nav waikawa-bg-800">
     <input type="checkbox" name="nav-check" id="nav-check" />
     <header class="nav-header">
-      <div class="nav-title text-size-6 waikawa-200"><i class="trademark icon"></i></div>
+      <RouterLink :to="{ name: 'home' }" class="nav-title text-size-6 waikawa-200"
+        ><i class="trademark icon"></i
+      ></RouterLink>
     </header>
     <div class="nav-links">
       <RouterLink class="text-size-3 waikawa-200" :to="{ name: 'profile' }">Perfil</RouterLink>
@@ -11,7 +13,7 @@
         class="text-size-3 waikawa-200"
         href="http://stackoverflow.com/users/4084003/"
         target="_blank"
-        >Stackoverflow</a
+        >Servicio</a
       >
     </div>
   </nav>

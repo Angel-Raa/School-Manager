@@ -37,10 +37,9 @@ export interface Course {
   description?: string
 }
 
-
-export interface SubscribedCourse{
+export interface SubscribedCourse {
   courseId: number
   name?: string
   description?: string
-  teacher?:string
+  teacher?: string
 }
