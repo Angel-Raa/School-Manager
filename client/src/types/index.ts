@@ -36,3 +36,11 @@ export interface Course {
   name?: string
   description?: string
 }
+
+
+export interface SubscribedCourse{
+  courseId: number
+  name?: string
+  description?: string
+  teacher?:string
+}

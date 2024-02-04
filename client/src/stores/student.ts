@@ -1,4 +1,4 @@
-import type { Student, Response } from '@/types'
+import type { Student, Response, SubscribedCourse } from '@/types'
 import { defineStore } from 'pinia'
 import { HelpHttp } from '../helper/HelpHttp'
 
@@ -9,7 +9,8 @@ export const useStudent = defineStore('student', {
     loading: false,
     response: {} as Response,
     students: [] as Student[],
-    student: {} as Student
+    student: {} as Student,
+    subscribedCourse: [] as SubscribedCourse[]
   }),
   actions: {
     async getStudentById(id: number): Promise<Student> {
@@ -33,6 +34,19 @@ export const useStudent = defineStore('student', {
           this.students = []
           return this.response as Response
         })
+    },
+
+    async subscribedCourse(studentId: number): Promise<SubscribedCourse[]> {
+      try {
+        const response = await api.get(
+          `http://localhost:9090/api/v1/student/student-subscribed-courses/${studentId} `
+        )
+
+        return response as SubscribedCourse[]
+      } catch (error) {
+        this.error = true
+        return [] as SubscribedCourse[]
+      }
     }
   }
 })

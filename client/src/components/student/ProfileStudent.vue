@@ -16,13 +16,12 @@ const student: Ref<Student> = ref({
     street: ''
   }
 })
-
-onMounted(() => {
-  getStudent(1)
-})
 const getStudent = async (id: number) => {
   student.value = await store.getStudentById(id)
 }
+onMounted(() => {
+  getStudent(1)
+})
 </script>
 
 <template>
@@ -35,7 +34,7 @@ const getStudent = async (id: number) => {
         <div class="content">
           <p class="header">{{ student.name }} {{ student.surname }}</p>
           <div class="meta">
-            <span class="date">{{ student.email }}</span>
+            <span class="email">{{ student.email }}</span>
           </div>
           <div class="meta">
             <span class="date">{{ student.phone }}</span>
@@ -44,8 +43,8 @@ const getStudent = async (id: number) => {
         </div>
       </div>
     </div>
-    <div class="main-content">
-      <StudentCourse />
+    <div class="main-content" v-if="student.id">
+      <StudentCourse :id="student.id"  />
     </div>
   </div>
 </template>
