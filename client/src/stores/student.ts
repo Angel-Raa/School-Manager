@@ -9,8 +9,7 @@ export const useStudent = defineStore('student', {
     loading: false,
     response: {} as Response,
     students: [] as Student[],
-    student: {} as Student,
-    subscribedCourse: [] as SubscribedCourse[]
+    student: {} as Student
   }),
   actions: {
     async getStudentById(id: number): Promise<Student> {
@@ -47,6 +46,25 @@ export const useStudent = defineStore('student', {
         this.error = true
         return [] as SubscribedCourse[]
       }
+    },
+
+    async subscribeCourse(studentId: number, courseId: number): Promise<Response> {
+      return api
+        .post(
+          `http://localhost:9090/api/v1/student/subscribe-course/${courseId}/student/${studentId}`
+        )
+        .then((res) => (this.response = res))
+        .catch(() => {
+          this.error = true
+          this.loading = false
+          this.response.message = 'Error'
+          return this.response as Response
+        })
+    }
+  },
+  getters: {
+    getStudentId(): any {
+      return this.student ? this.student.id : null
     }
   }
 })

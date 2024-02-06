@@ -20,7 +20,7 @@ const getStudent = async (id: number) => {
   student.value = await store.getStudentById(id)
 }
 onMounted(() => {
-  getStudent(1)
+  getStudent(2)
 })
 </script>
 <template>

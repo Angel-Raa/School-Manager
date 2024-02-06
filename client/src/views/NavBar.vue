@@ -1,3 +1,12 @@
+<script setup lang="ts">
+import { useRoute } from 'vue-router'
+
+const routes = useRoute()
+const studendId = routes.params.id
+
+
+</script>
+
 <template>
   <nav class="nav waikawa-bg-800">
     <input type="checkbox" name="nav-check" id="nav-check" />
@@ -8,7 +17,14 @@
     </header>
     <div class="nav-links">
       <RouterLink class="text-size-3 waikawa-200" :to="{ name: 'profile' }">Perfil</RouterLink>
-      <RouterLink class="text-size-3 waikawa-200" :to="{ name: 'course' }">Asignatura</RouterLink>
+      <RouterLink
+        class="text-size-3 waikawa-200"
+        :to="{
+          name: 'course-detail'
+          
+        }"
+        >Asignatura</RouterLink
+      >
       <a
         class="text-size-3 waikawa-200"
         href="http://stackoverflow.com/users/4084003/"

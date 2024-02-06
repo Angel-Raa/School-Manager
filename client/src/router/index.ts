@@ -13,7 +13,7 @@ const routes: Array<RouteRecordRaw> = [
   },
   {
     path: '/course',
-    name: 'course',
+    name: 'course-detail',
     component: () => import('@/views/CourseViews.vue')
   }
 ]

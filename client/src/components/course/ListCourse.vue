@@ -1,8 +1,10 @@
 <script setup lang="ts">
 import { useCourseStore } from '@/stores/course'
+import { useStudent } from '@/stores/student'
 import type { Course } from '@/types'
 import { ref, type Ref, onMounted } from 'vue'
 const store = useCourseStore()
+const useStundent = useStudent()
 const courses: Ref<Course[]> = ref([])
 onMounted(() => {
   loading()
@@ -12,13 +14,15 @@ const loading = async () => {
   courses.value = await store.getAllCourses()
   courses.value ? console.log(courses.value) : console.log('No se han Cargado los curso aun')
 }
+
+//const subscribeCourse = async () => {}
 </script>
 
 <template>
   <div v-if="courses.length === 0">
     <div class="no-courses">
       <i class="fa fa-exclamation-triangle"></i>
-      <p>No Cursos Disponibles</p>
+      <p>No A Cursos Disponibles</p>
     </div>
   </div>
   <div class="ui grid">
