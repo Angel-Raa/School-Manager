@@ -1,11 +1,4 @@
-<script setup lang="ts">
-import { useRoute } from 'vue-router'
-
-const routes = useRoute()
-const studendId = routes.params.id
-
-
-</script>
+<script setup lang="ts"></script>
 
 <template>
   <nav class="nav waikawa-bg-800">
@@ -21,7 +14,6 @@ const studendId = routes.params.id
         class="text-size-3 waikawa-200"
         :to="{
           name: 'course-detail'
-          
         }"
         >Asignatura</RouterLink
       >

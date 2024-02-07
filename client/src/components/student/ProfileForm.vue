@@ -17,6 +17,7 @@ const students: Ref<Student> = ref({
 const store = useStudent()
 const createStudent = async () => {
   const response = await store.addStudentStore(students.value)
+  
   console.log(students.value)
   console.log(students.value.address)
   students.value.address.city = ''

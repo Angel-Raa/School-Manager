@@ -3,8 +3,10 @@ import { type Student } from '@/types'
 import useStudent from '@/stores/student'
 import { onMounted, ref, type Ref } from 'vue'
 import StudentCourse from './StudentCourse.vue'
+import ListCourse from '../course/ListCourse.vue'
 
 const store = useStudent()
+
 const student: Ref<Student> = ref({
   name: '',
   surname: '',
@@ -44,6 +46,7 @@ onMounted(() => {
     </div>
     <div class="main-content" v-if="student.id">
       <StudentCourse :id="student.id" />
+      <ListCourse :hidden="true" :id="student.id" />
     </div>
     <div class="student-status">
       <span>Estudiante</span>
