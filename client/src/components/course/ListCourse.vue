@@ -1,16 +1,8 @@
 <script setup lang="ts">
 import { useCourseStore } from '@/stores/course'
-import useStudent from '@/stores/student'
 import type { Course } from '@/types'
-import { ref, type Ref, onMounted, type PropType, defineProps } from 'vue'
+import { ref, type Ref, onMounted } from 'vue'
 const store = useCourseStore()
-const storeStudent = useStudent()
-const props = defineProps({
-  id: {
-    type: Number as PropType<number | undefined>,
-    required: true
-  }
-})
 
 const courses: Ref<Course[]> = ref([])
 onMounted(() => {
@@ -22,12 +14,8 @@ const loading = async () => {
   courses.value ? console.log(courses.value) : console.log('No se han Cargado los curso aun')
 }
 
-const subscribeCourse = async (courseId: number) => {
-  if (props.id !== undefined) {
-    const subscribe = await storeStudent.subscribeCourse(props.id, courseId)
-  } else {
-    console.error('ID del estudiante no definido')
-  }
+const subscribeCourse = (courseId: number) => {
+  // TODO para Luego
 }
 </script>
 
@@ -52,9 +40,7 @@ const subscribeCourse = async (courseId: number) => {
             </div>
           </div>
           <div class="action-button">
-            <button class="ui button" @click="subscribeCourse(course.courseId)">
-              Añadir Curso
-            </button>
+            <button class="ui button" @click="() => console.log(course)">Añadir Curso</button>
           </div>
         </div>
       </div>

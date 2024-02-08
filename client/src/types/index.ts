@@ -32,7 +32,7 @@ export interface Teacher {
 }
 
 export interface Course {
-  courseId: number
+  courseId?: number
   name?: string
   description?: string
 }

@@ -10,6 +10,7 @@
     </header>
     <div class="nav-links">
       <RouterLink class="text-size-3 waikawa-200" :to="{ name: 'profile' }">Perfil</RouterLink>
+      <RouterLink class="text-size-3 waikawa-200" :to="{ name: 'teacher' }">Maestro</RouterLink>
       <RouterLink
         class="text-size-3 waikawa-200"
         :to="{
