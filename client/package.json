@@ -16,6 +16,7 @@
     "format": "prettier --write src/"
   },
   "dependencies": {
+    "mosha-vue-toastify": "^1.0.23",
     "pinia": "^2.1.7",
     "semantic-ui-css": "^2.5.0",
     "vue": "^3.3.11",
