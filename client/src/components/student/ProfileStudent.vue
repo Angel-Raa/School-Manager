@@ -45,7 +45,7 @@ onMounted(() => {
       </div>
     </div>
     <div class="main-content" v-if="student.id">
-      <StudentCourse :id="student.id" />
+      <StudentCourse :id="student.id" />																																	
     </div>
     <div class="student-status">
       <span>Estudiante</span>
