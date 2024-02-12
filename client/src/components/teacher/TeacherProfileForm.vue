@@ -2,6 +2,7 @@
 import { userTeacher } from '@/stores/teacher'
 import type { Teacher } from '@/types'
 import { ref, type Ref } from 'vue'
+import CreateCourse from '../course/CreateCourse.vue'
 const store = userTeacher()
 const teacher: Ref<Teacher> = ref({
   name: '',
@@ -105,4 +106,7 @@ const save = async () => {
       <button type="submit" class="ui primary button">Save</button>
     </div>
   </form>
+  <div v-if="teacher.id">
+    <CreateCourse :id="teacher.id" />
+  </div>
 </template>

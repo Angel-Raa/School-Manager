@@ -29,6 +29,19 @@ export const userTeacher = defineStore('teacher', {
           this.response.status = error.status
           return this.response
         })
+    },
+    async getTeacherById(teahcerId: number): Promise<Teacher> {
+      try {
+        const response = await api.get(
+          `http://localhost:9090/api/v1/teacher/teacher-by/${teahcerId}`
+        )
+        this.teacher = response
+        return this.teacher
+      } catch (error) {
+        this.error = true
+        this.loading = false
+        return {} as Teacher as Teacher
+      }
     }
   }
 })

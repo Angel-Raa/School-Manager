@@ -1,9 +1,9 @@
 <script setup lang="ts">
-import TeacherProfileForm from '@/components/teacher/TeacherProfileForm.vue'
-import CreateCourse from '@/components/course/CreateCourse.vue'
+//import TeacherProfileForm from '@/components/teacher/TeacherProfileForm.vue'
+import TeacherProfile from '@/components/teacher/TeacherProfile.vue';
 </script>
 
 <template>
-  <TeacherProfileForm />
-  <CreateCourse />
+
+  <TeacherProfile/>
 </template>

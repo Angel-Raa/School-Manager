@@ -1,13 +1,22 @@
 <script setup lang="ts">
 import type { Course } from '@/types'
 import { ref, type Ref } from 'vue'
+import { useCourseStore } from '@/stores/course'
+const store = useCourseStore()
+const props = defineProps({
+  id: {
+    required: true,
+    type: Number
+  }
+})
 const course: Ref<Course> = ref({
   name: '',
   description: ''
 })
 
-const createCourse = () => {
+const createCourse = async () => {
   console.info(course.value)
+  const response = await store.createCourse(course.value, props.id)
   course.value.description = ''
   course.value.name = ''
 }
@@ -39,7 +48,7 @@ const createCourse = () => {
         autocorrect="on"
       ></textarea>
     </div>
-    <button type="submit" class="ui primary button" @click="createCourse()">Save</button>
+    <button type="submit" class="ui primary button" @click="createCourse">Save</button>
   </div>
 </template>
 

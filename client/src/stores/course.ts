@@ -23,6 +23,21 @@ export const useCourseStore = defineStore('course', {
         this.loading = false
         return []
       }
+    },
+
+    async createCourse(course: Course, teacherId: number): Promise<Course> {
+      try {
+        const response = await api.post(
+          `http://localhost:9090/api/v1/course/save-course/${teacherId}`,
+          { body: course }
+        )
+        this.response = response
+        return response
+      } catch (error) {
+        this.error = true
+        this.loading = false
+        return {} as Course
+      }
     }
   }
 })

@@ -1,29 +1,30 @@
 <script setup lang="ts">
-import { type Student } from '@/types'
-import useStudent from '@/stores/student'
-import { onMounted, ref, type Ref } from 'vue'
-import StudentCourse from './StudentCourse.vue'
-
-const store = useStudent()
-
-const student: Ref<Student> = ref({
+import { ref, type Ref, onMounted } from 'vue'
+import { type Teacher } from '@/types/index'
+import { userTeacher } from '@/stores/teacher'
+const store = userTeacher()
+const teacher: Ref<Teacher> = ref({
   name: '',
   surname: '',
   email: '',
   phone: '',
   gender: '',
+  specialization: '',
   address: {
     city: '',
     street: ''
   }
 })
-const getStudent = async (id: number) => {
-  student.value = await store.getStudentById(id)
+
+const loading = async () => {
+  teacher.value = await store.getTeacherById(2)
 }
+
 onMounted(() => {
-  getStudent(2)
+  loading()
 })
 </script>
+
 <template>
   <div class="container">
     <div class="profile">
@@ -32,28 +33,31 @@ onMounted(() => {
           <img src="@/assets/img/foto.jpg" alt="perfil" />
         </div>
         <div class="content">
-          <p class="header">{{ student.name }} {{ student.surname }}</p>
+          <p class="header">{{ teacher.name }} {{ teacher.surname }}</p>
           <div class="meta">
-            <span class="email">{{ student.email }}</span>
+            <span class="email">{{ teacher.email }}</span>
           </div>
           <div class="meta">
-            <span class="date">{{ student.phone }}</span>
+            <span class="date">{{ teacher.phone }}</span>
           </div>
-          <div class="description">{{ student.address.city }}</div>
+          <div class="meta">
+            <span class="date">{{ teacher.specialization }}</span>
+          </div>
+          <div class="description">{{ teacher.address.city }}</div>
         </div>
       </div>
     </div>
-    <div class="main-content" v-if="student.id">
-      <StudentCourse :id="student.id" />
+    <div class="main-content" v-if="teacher.id">
+    <!-- TODO obtener listado de toda la asignatura de maestro  --->
     </div>
     <div class="student-status">
-      <span>Estudiante</span>
+      <span>Maestro</span>
       <section class="status active">ACTIVO</section>
     </div>
+    <!-- TODO Crear asignatura   --->
   </div>
 </template>
-
-<style>
+<style scoped>
 .container {
   display: grid;
   grid-template-columns: 1fr 3fr; /* Two main columns: profile and main content */
