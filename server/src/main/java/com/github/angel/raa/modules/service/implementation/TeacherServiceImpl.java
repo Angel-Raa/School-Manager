@@ -35,6 +35,7 @@ public class TeacherServiceImpl implements TeacherService {
         return repository.findAll().stream()
                 .map(it -> new TeacherDTO(it.getId(), it.getName(), it.getSurname(), it.getEmail(), it.getPhone(), it.getGender(),it.getSpecialization(), new AddressDTO(it.getAddress().getCity(), it.getAddress().getStreet())))
                 .toList();
+
     }
     @Transactional(readOnly = true)
     @Override
@@ -83,8 +84,16 @@ public class TeacherServiceImpl implements TeacherService {
                 .timestamp(LocalDateTime.now())
                 .build();
     }
-
-
+    /*
+    @Transactional(readOnly = true)
+    @Override
+    public Set<CourseDTO> getSubjects(Long teacherId) {
+        Teacher teacher = repository.findById(teacherId).orElseThrow(() -> new NotFoundTeacherException(Message.NOT_FOUND_TEACHER, HttpStatus.NOT_FOUND, 4040));
+        return teacher.getCourses().stream()
+                .map( it  -> new CourseDTO(it.getId(),it.getName(), it.getDescription()))
+                .collect(Collectors.toSet());
+    }
+*/
 
     @Contract("_ -> new")
     private @NotNull TeacherDTO mapTeacher(@NotNull Teacher teacher){
@@ -105,7 +114,7 @@ public class TeacherServiceImpl implements TeacherService {
         teacher.setAddress(address);
         return teacher;
     }
-    private void mapUpdateTeacher(TeacherDTO teacherDTO,  Teacher teacher) {
+    private void mapUpdateTeacher(@NotNull TeacherDTO teacherDTO, @NotNull Teacher teacher) {
         teacher.setName(teacherDTO.name());
         teacher.setSurname(teacherDTO.surname());
         teacher.setEmail(teacherDTO.email());

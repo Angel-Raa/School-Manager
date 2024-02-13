@@ -3,6 +3,7 @@ package com.github.angel.raa.modules.controller;
 import com.github.angel.raa.modules.service.intefaces.CourseService;
 import com.github.angel.raa.modules.utils.DTO.CourseDTO;
 import com.github.angel.raa.modules.utils.DTO.CourseTeacherDTO;
+import com.github.angel.raa.modules.utils.DTO.SubjectsDTO;
 import com.github.angel.raa.modules.utils.api.Response;
 import jakarta.validation.Valid;
 import jakarta.validation.constraints.Min;
@@ -14,6 +15,7 @@ import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
+import java.util.Set;
 
 @Validated
 @RequiredArgsConstructor
@@ -32,6 +34,10 @@ public class CourseController {
         return ResponseEntity.ok(courseService.getAllCourseTeachers());
     }
 
+    @GetMapping("/subjects-teacher/{teacherId}")
+    public ResponseEntity<List<SubjectsDTO>> getCourseTeachers(@PathVariable(value = "teacherId")  @Min(1)  @PositiveOrZero(message = "Id must be greater than 0")  Long teacherId) {
+        return ResponseEntity.ok(courseService.getCourseTeachers(teacherId));
+    }
     @PostMapping("/save-course/{teacherId}")
     public ResponseEntity<Response> create(@Valid @RequestBody CourseDTO dto, @PathVariable(value = "teacherId")  @Min(1)  @PositiveOrZero(message = "Id must be greater than 0")  Long teacherId) {
         return ResponseEntity.status(HttpStatus.CREATED).body(courseService.create(teacherId, dto));

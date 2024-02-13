@@ -1,6 +1,7 @@
 package com.github.angel.raa.modules.controller;
 
 import com.github.angel.raa.modules.service.intefaces.TeacherService;
+import com.github.angel.raa.modules.utils.DTO.CourseDTO;
 import com.github.angel.raa.modules.utils.DTO.TeacherDTO;
 import com.github.angel.raa.modules.utils.api.Response;
 import jakarta.validation.Valid;
@@ -13,6 +14,7 @@ import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
+import java.util.Set;
 
 @Validated
 @RequiredArgsConstructor
@@ -30,6 +32,8 @@ public class TeacherController {
     public ResponseEntity<TeacherDTO> findById(@Valid @PathVariable(value = "id") @Min(1) Long id) {
         return ResponseEntity.ok(service.findById(id));
     }
+
+
 
     @PostMapping("/add-teacher")
     public ResponseEntity<Response> addTeacher(@Valid @RequestBody TeacherDTO teacherDTO) {

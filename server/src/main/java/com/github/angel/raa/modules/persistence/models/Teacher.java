@@ -7,6 +7,7 @@ import lombok.NoArgsConstructor;
 
 import java.io.Serial;
 import java.io.Serializable;
+import java.util.Set;
 
 @Data
 @AllArgsConstructor
@@ -32,5 +33,4 @@ public class Teacher implements Serializable {
     @OneToOne(cascade = CascadeType.ALL, fetch = FetchType.LAZY, orphanRemoval = true)
     @JoinColumn(name = "address_id" , unique = true)
     private Address address;
-
 }

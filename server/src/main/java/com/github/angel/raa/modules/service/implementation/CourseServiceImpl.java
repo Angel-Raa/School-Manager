@@ -13,6 +13,7 @@ import com.github.angel.raa.modules.service.intefaces.CourseService;
 import com.github.angel.raa.modules.utils.DTO.CourseDTO;
 import com.github.angel.raa.modules.utils.DTO.CourseTeacherDTO;
 import com.github.angel.raa.modules.utils.DTO.InfoDTO;
+import com.github.angel.raa.modules.utils.DTO.SubjectsDTO;
 import com.github.angel.raa.modules.utils.api.Response;
 import com.github.angel.raa.modules.utils.constants.Message;
 import lombok.RequiredArgsConstructor;
@@ -24,6 +25,7 @@ import org.springframework.transaction.annotation.Transactional;
 
 import java.time.LocalDateTime;
 import java.util.List;
+import java.util.Set;
 
 @Service
 @RequiredArgsConstructor
@@ -108,6 +110,15 @@ public class CourseServiceImpl implements CourseService {
         return repository.findAll()
                 .stream()
                 .map(it -> new CourseTeacherDTO(it.getName(), mapCourse(it.getTeacher())))
+                .toList();
+    }
+    @Transactional(readOnly = true)
+    @Override
+    public List<SubjectsDTO> getCourseTeachers(Long teacher) {
+        Teacher maestro = teacherRepository.findById(teacher).orElseThrow(() -> new NotFoundSubjectsException(Message.NOT_FOUND, HttpStatus.NOT_FOUND, Message.NOT_FOUND_HTTP));
+        return repository.findByTeacher(maestro)
+                .stream()
+                .map(it -> new SubjectsDTO(it.getId(), it.getName(), it.getDescription()))
                 .toList();
     }
 

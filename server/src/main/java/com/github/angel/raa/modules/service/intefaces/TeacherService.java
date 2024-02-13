@@ -5,6 +5,7 @@ import com.github.angel.raa.modules.utils.api.Response;
 
 import java.util.List;
 
+
 public interface TeacherService {
     List<TeacherDTO> findAll();
     TeacherDTO findById(Long id);
@@ -12,4 +13,5 @@ public interface TeacherService {
     Response delete(Long id);
     Response update(Long id, TeacherDTO teacherDTO);
     //<-- returns a set of TeacherCourseDTO, not a list<TeacherCourseDTO>
+
 }

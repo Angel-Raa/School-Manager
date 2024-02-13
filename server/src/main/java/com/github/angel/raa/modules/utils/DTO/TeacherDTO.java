@@ -4,6 +4,8 @@ import jakarta.validation.constraints.NotEmpty;
 import jakarta.validation.constraints.Pattern;
 import jakarta.validation.constraints.Size;
 
+import java.util.Set;
+
 public record TeacherDTO(Long teacherId,
                          @NotEmpty(message = "Campo nombre no puede esta vacio")
                          @Size(min = 4, message = "nombre no valido")
@@ -20,6 +22,7 @@ public record TeacherDTO(Long teacherId,
                          String gender,
                          String specialization,
                          AddressDTO address
+
 
 
 ) {
