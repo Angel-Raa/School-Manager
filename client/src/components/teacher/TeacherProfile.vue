@@ -2,6 +2,7 @@
 import { ref, type Ref, onMounted } from 'vue'
 import { type Teacher } from '@/types/index'
 import { userTeacher } from '@/stores/teacher'
+import SubjectsList from './SubjectsList.vue'
 const store = userTeacher()
 const teacher: Ref<Teacher> = ref({
   name: '',
@@ -48,7 +49,8 @@ onMounted(() => {
       </div>
     </div>
     <div class="main-content" v-if="teacher.id">
-    <!-- TODO obtener listado de toda la asignatura de maestro  --->
+      <!-- TODO obtener listado de toda la asignatura de maestro  --->
+      <SubjectsList :id="teacher.id" />
     </div>
     <div class="student-status">
       <span>Maestro</span>

@@ -38,6 +38,20 @@ export const useCourseStore = defineStore('course', {
         this.loading = false
         return {} as Course
       }
+    },
+
+    async getCourseTeachers(teacherId: number): Promise<Course[]> {
+      try {
+        this.loading = true
+        const response = await api.get(
+          `http://localhost:9090/api/v1/course/subjects-teacher/${teacherId}`
+        )
+        return response
+      } catch (error) {
+        this.error = true
+        this.loading = false
+        return [] as Course[]
+      }
     }
   }
 })
