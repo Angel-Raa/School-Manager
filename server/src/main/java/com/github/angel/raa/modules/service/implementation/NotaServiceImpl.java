@@ -16,9 +16,11 @@ import com.github.angel.raa.modules.utils.api.Response;
 import com.github.angel.raa.modules.utils.constants.Message;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.log4j.Log4j2;
+import org.jetbrains.annotations.NotNull;
 import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
+import org.springframework.web.bind.annotation.RequestBody;
 
 import java.time.LocalDateTime;
 import java.util.List;
@@ -78,12 +80,14 @@ public class NotaServiceImpl implements NotaService {
     }
     @Transactional
     @Override
-    public Response update(Long notaId, Long qualification) {
+    public Response update(Long notaId, @NotNull NotaDTO dto ) {
         Nota nota = notaRepository.findById(notaId).orElseThrow(() -> new NotFoundNotaException("Nota not found", HttpStatus.NOT_FOUND, Message.NOT_FOUND_HTTP));
-        nota.setQualification(qualification);
+        nota.setQualification(dto.qualification());
         return Response.builder()
                 .message(Message.UPDATE_SUCCESS)
-                .code(Message.BAD_REQUEST)
+                .code(Message.OK)
+                .timestamp(LocalDateTime.now())
+                .status(HttpStatus.OK)
                 .build();
     }
 

@@ -38,8 +38,8 @@ public class NotaController {
     }
 
     @PutMapping("/update-nota/{id}")
-    public ResponseEntity<Response> update(@Valid @PathVariable @Min(1)  @PositiveOrZero(message = "Id must be greater than 0")  Long id, @RequestBody Long qualification) {
-        return ResponseEntity.status(HttpStatus.OK).body(service.update(id, qualification));
+    public ResponseEntity<Response> update(@Valid @PathVariable @Min(1)  @PositiveOrZero(message = "Id must be greater than 0")  Long id, @RequestBody NotaDTO dto ) {
+        return ResponseEntity.status(HttpStatus.OK).body(service.update(id, dto));
     }
     @DeleteMapping("/delete-nota/{id}")
     public ResponseEntity<Response> delete(@Valid @PathVariable @Min(1)  @PositiveOrZero(message = "Id must be greater than 0")  Long id) {

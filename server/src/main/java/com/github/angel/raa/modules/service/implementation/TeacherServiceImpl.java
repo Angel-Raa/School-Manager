@@ -3,12 +3,10 @@ package com.github.angel.raa.modules.service.implementation;
 import com.github.angel.raa.modules.configuration.exception.HandlerException;
 import com.github.angel.raa.modules.configuration.exception.NotFoundTeacherException;
 import com.github.angel.raa.modules.persistence.models.Address;
-import com.github.angel.raa.modules.persistence.models.Course;
 import com.github.angel.raa.modules.persistence.models.Teacher;
 import com.github.angel.raa.modules.persistence.repository.TeacherRepository;
 import com.github.angel.raa.modules.service.intefaces.TeacherService;
 import com.github.angel.raa.modules.utils.DTO.AddressDTO;
-import com.github.angel.raa.modules.utils.DTO.CourseDTO;
 import com.github.angel.raa.modules.utils.DTO.TeacherDTO;
 import com.github.angel.raa.modules.utils.api.Response;
 import com.github.angel.raa.modules.utils.constants.Message;
@@ -22,8 +20,6 @@ import org.springframework.transaction.annotation.Transactional;
 
 import java.time.LocalDateTime;
 import java.util.List;
-import java.util.Set;
-import java.util.stream.Collectors;
 @Log
 @Service
 @RequiredArgsConstructor
@@ -84,21 +80,12 @@ public class TeacherServiceImpl implements TeacherService {
                 .timestamp(LocalDateTime.now())
                 .build();
     }
-    /*
-    @Transactional(readOnly = true)
-    @Override
-    public Set<CourseDTO> getSubjects(Long teacherId) {
-        Teacher teacher = repository.findById(teacherId).orElseThrow(() -> new NotFoundTeacherException(Message.NOT_FOUND_TEACHER, HttpStatus.NOT_FOUND, 4040));
-        return teacher.getCourses().stream()
-                .map( it  -> new CourseDTO(it.getId(),it.getName(), it.getDescription()))
-                .collect(Collectors.toSet());
-    }
-*/
 
     @Contract("_ -> new")
     private @NotNull TeacherDTO mapTeacher(@NotNull Teacher teacher){
         return new TeacherDTO(teacher.getId(), teacher.getName(), teacher.getSurname(), teacher.getEmail(), teacher.getPhone(), teacher.getGender(), teacher.getSpecialization(), new AddressDTO(teacher.getAddress().getCity(), teacher.getAddress().getStreet()));
     }
+    @Contract("_ -> new")
     private @NotNull Teacher mapTeacherDTO(@NotNull TeacherDTO teacherDTO){
         Teacher teacher = new Teacher();
         Address address = new Address();
