@@ -10,5 +10,6 @@ public interface NotaService {
     Response save(NotaDTO dto,Long studentId, Long courseId);
     Response delete(Long id);
     Response update(Long notaId, Long qualification);
+    List<NotaDTO> getNotaByCourse(Long studentId); //<-- returns a list of NotaDTO, not a set<NotaDTO>
 
 }

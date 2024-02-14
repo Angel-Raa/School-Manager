@@ -28,6 +28,10 @@ public class NotaController {
     }
 
 
+    @GetMapping("/nota-student/{studentId}")
+    public ResponseEntity<List<NotaDTO>> getNotaByStudentId(@PathVariable(value = "studentId") @Min(1) @PositiveOrZero(message = "Id must be greater than 0") Long studentId) {
+        return ResponseEntity.ok(service.getNotaByCourse(studentId));
+    }
     @PostMapping("/save-nota/student/{studentId}/course/{courseId}")
     public ResponseEntity<Response> save(@Valid @PositiveOrZero(message = "Id must be greater than 0")  @PathVariable(value = "studentId") @Min(1) Long studentId, @PathVariable(value = "courseId") @Min(1) Long courseId,@RequestBody NotaDTO dto ) {
         return ResponseEntity.status(HttpStatus.CREATED).body(service.save(dto, studentId, courseId));

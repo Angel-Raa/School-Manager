@@ -86,4 +86,14 @@ public class NotaServiceImpl implements NotaService {
                 .code(Message.BAD_REQUEST)
                 .build();
     }
+
+    @Transactional(readOnly = true)
+    @Override
+    public List<NotaDTO> getNotaByCourse(Long studentId) {
+        Student student = studentRepository.findById(studentId).orElseThrow(() -> new NotFoundStundetException("Student not found", HttpStatus.NOT_FOUND, Message.NOT_FOUND_HTTP, LocalDateTime.now()));
+        List<Nota> nota = notaRepository.findByStudent(student);
+        return nota.stream().map(it -> new NotaDTO(it.getId(), it.getStudent().getName(), it.getCourse().getName(), it.getQualification()))
+                .toList();
+
+    }
 }
