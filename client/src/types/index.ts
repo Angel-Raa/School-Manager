@@ -21,7 +21,7 @@ export interface Response {
 }
 
 export interface Teacher {
-  id?: number
+  teacherId?: number
   name?: string
   surname?: string
   email?: string
@@ -42,4 +42,11 @@ export interface SubscribedCourse {
   name?: string
   description?: string
   teacher?: string
+}
+
+export interface Nota {
+  notaId?: number
+  student?: string
+  course?: string
+  qualification?: number
 }

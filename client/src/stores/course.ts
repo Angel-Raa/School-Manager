@@ -25,7 +25,7 @@ export const useCourseStore = defineStore('course', {
       }
     },
 
-    async createCourse(course: Course, teacherId: number): Promise<Course> {
+    async createCourse(teacherId: number, course: Course): Promise<Course> {
       try {
         const response = await api.post(
           `http://localhost:9090/api/v1/course/save-course/${teacherId}`,
@@ -46,7 +46,8 @@ export const useCourseStore = defineStore('course', {
         const response = await api.get(
           `http://localhost:9090/api/v1/course/subjects-teacher/${teacherId}`
         )
-        return response
+        this.courses = response
+        return this.courses
       } catch (error) {
         this.error = true
         this.loading = false

@@ -15,14 +15,15 @@ const course: Ref<Course> = ref({
 })
 
 const createCourse = async () => {
-  console.info(course.value)
-  const response = await store.createCourse(course.value, props.id)
+  store.createCourse(props.id, course.value)
   course.value.description = ''
   course.value.name = ''
 }
+
 </script>
 
 <template>
+  <h2>Agregar asignatura</h2>
   <div class="ui form">
     <div class="field">
       <label for="name">nombre de asignatura</label>
