@@ -18,6 +18,8 @@ const teacher: Ref<Teacher> = ref({
   }
 })
 
+// TODO mejora en disenor de components, obtener y realizar la nota de los alumnos .
+
 const loading = async (teacherId: number) => {
   teacher.value = await store.getTeacherById(teacherId)
 }

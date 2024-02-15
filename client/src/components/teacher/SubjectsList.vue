@@ -18,7 +18,6 @@ const loadignSujects = async (courseId: number) => {
 }
 onMounted(() => {
   loadignSujects(props.id)
-  
 })
 </script>
 

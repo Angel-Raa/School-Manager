@@ -19,7 +19,6 @@ const createCourse = async () => {
   course.value.description = ''
   course.value.name = ''
 }
-
 </script>
 
 <template>
